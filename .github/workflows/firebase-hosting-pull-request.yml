@@ -15,9 +15,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install and Build Project
+      - name: Install Dependencies and Build
         run: |
-          cd CM
           npm install
           npm run build
 
@@ -28,4 +27,3 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TESTE_CM_5E785 }}'
           channelId: live
           projectId: teste-cm-5e785
-          public: CM/build
