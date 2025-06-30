@@ -7,27 +7,15 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
-
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./CM
-
-      - name: Build Project
-        run: npm run build
-        working-directory: ./CM
-
-      - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - run: npm install
+      - run: npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TESTE_CM_5E785 }}'
           channelId: live
           projectId: teste-cm-5e785
-          public: CM/build
